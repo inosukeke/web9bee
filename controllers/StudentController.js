@@ -1,4 +1,4 @@
-const studentService = require("../be-crud-student-main/services/StudentService.js");
+const studentService = require("../../services/StudentService.js");
 const StudentSchema = require("../models/Student.js");
 
 exports.getAllStudents = async (req, res) => {
@@ -35,12 +35,10 @@ exports.updateStudent = async (req, res) => {
     const student = await studentService.updateStudent(req.params.id, req.body);
     res.setHeader("Access-Control-Allow-Origin", "*");
     if (student == null) {
-      res
-        .status(404)
-        .json({
-          message: `Không tìm thấy sinh viên có mã id ${req.params.id}`,
-          status: "error",
-        });
+      res.status(404).json({
+        message: `Không tìm thấy sinh viên có mã id ${req.params.id}`,
+        status: "error",
+      });
     } else {
       res.json({ data: student, status: "success" });
     }
@@ -53,12 +51,10 @@ exports.deleteStudent = async (req, res) => {
     const student = await studentService.deleteStudent(req.params.id, req.body);
     res.setHeader("Access-Control-Allow-Origin", "*");
     if (student == null) {
-      res
-        .status(404)
-        .json({
-          message: `Không tìm thấy sinh viên có mã id ${req.params.id}`,
-          status: "error",
-        });
+      res.status(404).json({
+        message: `Không tìm thấy sinh viên có mã id ${req.params.id}`,
+        status: "error",
+      });
     } else {
       res.json({ data: student, status: "success" });
     }
